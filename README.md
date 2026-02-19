@@ -7,14 +7,15 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
 ## 📌 Project Overview
-Welcome to this MLOps project, designed to demonstrate a robust pipeline for managing vehicle insurance data. This project aims to impress recruiters and visitors by showcasing the various tools, techniques, services, and features that go into building and deploying a machine learning pipeline for real-world data management. Follow along to learn about project setup, data processing, model deployment, and CI/CD automation!
+This project demonstrates a production-ready, end-to-end Machine Learning Operations (MLOps) pipeline for vehicle data prediction. It bridges the gap between Jupyter Notebook experimentation and cloud-based production systems. 
 
+The architecture seamlessly handles everything from automated data ingestion (via MongoDB) to model training, evaluation, and CI/CD deployment on an AWS EC2 instance using Docker and GitHub Actions.
 
 
 ---
 
 ## 🛠️ Tech Stack & Tools
-* **Language:** Python 3.10
+* **Language:** Python
 * **Database:** MongoDB Atlas (Cloud)
 * **Cloud Provider:** Amazon Web Services (AWS - S3, IAM, ECR, EC2)
 * **Containerization:** Docker
@@ -30,7 +31,7 @@ Start by executing the `template.py` file to create the initial project template
 
 **Step 2: Package Management**
 Write the setup for importing local packages in the `setup.py` and `pyproject.toml` files.
-*Tip: Learn more about these files from `crashcourse.txt`.*
+
 
 **Step 3: Virtual Environment and Dependencies**
 Create a virtual environment and install required dependencies from `requirements.txt`:
@@ -56,7 +57,7 @@ pip list
 
 * Sign up for **MongoDB Atlas** and create a new project.
 * Set up a free `M0` cluster, configure the username and password, and allow access from any IP address (`0.0.0.0/0`).
-* Retrieve the MongoDB connection string for Python and save it (replace `<password>` with your password).
+* Retrieve the MongoDB connection string for Python and save it.
 
 **Step 5: Pushing Data to MongoDB**
 
@@ -97,7 +98,6 @@ $env:MONGODB_URL="mongodb+srv://<username>:<password>...."
 
 ```
 
-*Note: On Windows, you can also set environment variables through the system settings. Also, add the `artifact` dir to your `.gitignore` file.*
 
 ---
 
@@ -130,7 +130,7 @@ export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
 
 * Configure the S3 Bucket and add access keys in `constants.__init__.py`. Ensure the following thresholds and bucket names are set:
 * `MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: 0.02`
-* `MODEL_BUCKET_NAME = "my-model-mlopsproj"`
+* `MODEL_BUCKET_NAME = "Use your bucket name but make sure to change it in constants/__init__.py"`
 * `MODEL_PUSHER_S3_KEY = "model-registry"`
 
 
@@ -164,6 +164,7 @@ Add `static` and `template` directories for the web UI.
 * `AWS_SECRET_ACCESS_KEY`
 * `AWS_DEFAULT_REGION`
 * `ECR_REPO`
+* `MONGODB_URL (Add this if you want a functional train model button)`
 
 
 
@@ -180,18 +181,12 @@ Add `static` and `template` directories for the web UI.
 * Access the deployed app by visiting `http://<public_ip>:5080`.
 * You can also do model training directly on the `/training` route.
 
----
-
-## 🛠️ Additional Resources
-
-* **Crash Course on setup.py and pyproject.toml:** See `crashcourse.txt` for details.
-* **GitHub Secrets:** Manage secrets for secure CI/CD pipelines.
 
 ---
 
 ## 🎯 Project Workflow Summary
 
-**Data Ingestion** ➔ **Data Validation** ➔ **Data Transformation** **Model Training** ➔ **Model Evaluation** ➔ **Model Deployment** **CI/CD Automation** with GitHub Actions, Docker, AWS EC2, and ECR
+**Data Ingestion** ➔ **Data Validation** ➔ **Data Transformation** ➔ **Model Training** ➔ **Model Evaluation** ➔ **Model Deployment** ➔ **CI/CD Automation** with GitHub Actions, Docker, AWS EC2, and ECR
 
 ---
 
